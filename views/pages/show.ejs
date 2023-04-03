@@ -1,0 +1,66 @@
+<!-- Post -->
+<%- include ('../templates/post', {post: post}) %> 
+
+<div class="box">
+  <div class = "boxContent">
+  <h3><strong>Reacties</strong></h3>
+
+  <% // Loading nested comments 
+  for (let i = 0; i < postComments.length; i++) { 
+    if (postComments[i].parentCommentId == null & postComments[i].show != 0) { %>
+      <%- include ('../templates/comment', {comment: postComments[i]}) %> 
+      <% function loadChildComments(parentId){
+
+        // Display the newest user comments on top
+        for (var j = postComments.length -1; j >= 0; j--) { 
+          if (postComments[j].parentCommentId == parentId & postComments[j].author.id == currentUser.id) { %>
+            <%- include ('../templates/comment', {comment: postComments[j]}) %> 
+            <% loadChildComments(postComments[j].id); 
+          }
+        }
+
+        // After rendering user comments, render admin comments 
+        for (var k = 0; k < postComments.length; k++) { 
+          if (postComments[k].parentCommentId == parentId & postComments[k].author.id != currentUser.id) { %>
+            <%- include ('../templates/comment', {comment: postComments[k]}) %> 
+            <% loadChildComments(postComments[k].id); 
+          }
+        }
+      }
+      loadChildComments(postComments[i].id);
+    }
+  } 
+  %>
+  </div>
+</div>
+
+<% // COMMMENT BOX %>
+  <div class="box">
+    <div class = "boxContent">
+      <h3><strong>Plaats een reactie</strong></h3>
+      <form class="commentForm" style = "margin-top: 20px;"data-id="<%= post.id %>">
+        <textarea class='textarea' id="commentFormText" name="text" placeholder="Wat vind jij?"></textarea>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button type="submit" class="btn action" style="position: relative; left: 100%; transform: translateX(-100%);"><b>Plaats reactie</b></button>
+      </form>
+    </div>
+  </div>
+
+<% // NAVIGATION %>
+<div id="getPageNr" style="display: none;">
+  <%=pageNr%>
+</div>
+
+<div class = "navigation">
+  <% if (pageNr !=0) {%>
+    <form id="prevNav" data-id="<%=previousPage%>">
+      <button type="submit" class="btn nav bottom" id = "btnPrev" style="margin-top: 0px;">Vorige pagina</button>
+    </form>
+  <% } else { %>
+    <div></div>
+  <% } %>
+
+  <form id="nextNav" data-id="<%=nextPage%>" data-qualtrics-id="<%=currentUser.qualtricsId%>">
+    <button type="submit" class="btn nav bottom" id = "btnNext" style="position: relative; left: 100%; transform: translateX(-100%); margin-top: 0px;">Volgende pagina</button>
+  </form>
+</div>

@@ -1,0 +1,41 @@
+{
+  "name": "website_express",
+  "version": "1.0.0",
+  "description": "Forum ethnic diversity and norms ",
+  "main": "app.js",
+  "scripts": {
+    "start": "node bin/www.js"
+  },
+  "author": "Nick Wuestenenk",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "crypto": "^1.0.1",
+    "csrf": "^3.1.0",
+    "csurf": "^1.11.0",
+    "dompurify": "^2.2.7",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "express-ejs-layouts": "^2.5.0",
+    "express-session": "^1.17.1",
+    "frameguard": "^4.0.0",
+    "https": "^1.0.0",
+    "jsdom": "^16.5.1",
+    "jsonwebtoken": "^8.5.1",
+    "marked": "^2.0.1",
+    "method-override": "^3.0.0",
+    "mysql2": "^2.2.5",
+    "node-localstorage": "^2.1.6",
+    "pug": "^3.0.2",
+    "sequelize": "^6.6.2",
+    "slugify": "^1.4.7",
+    "sqlite3": "^5.0.4"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.2.0"
+  }
+}

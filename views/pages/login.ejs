@@ -1,0 +1,17 @@
+<%- include ('../templates/header') %> 
+<header>
+    <title>VerySocial</title>
+</header>
+
+<div class="box login">
+    <form action="/auth/login" method="POST" style="display: inline-block;">
+        <label><b>Kies een gebruikersnaam</b></label>
+        <input type="text" name="username" class="textarea login" placeholder="Jouw gebruikersnaam">
+        <input type="hidden" name="qualtricsId" value="<%= qualtricsId %>">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button type="submit" class="btn nav" style = "float: right; margin-bottom: 5px;">Log in</button>
+    </form>
+    <p class = "mt-2">Je gebruikersnaam kan bijvoorbeeld je naam en geboortejaar zijn, zoals Burhan1964 of Lisa1980</p>
+    <p class = "mt-2" style = "color: red !important"><%= error %></p>
+</div>
+    

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrfToken" content="<%= csrfToken %>">
+  
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/all.css">
+</head>
+
+<title>VerySocial</title>
+
+<body>
+  <%- include ('../templates/header') %>
+    <div class="container">
+      <main>
+        <%-body %>
+      </main>
+    </div>
+    <%- include ('../templates/footer') %>
+
+  <script src="/bower_components/jquery/dist/jquery.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+  <script src="/javascripts/reply.js"></script>
+  <script src="/javascripts/vote.js"></script>
+  <script src="/javascripts/timer.js"></script>
+
+</body>
+</html>

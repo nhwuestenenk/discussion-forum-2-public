@@ -1,0 +1,43 @@
+<div class="box comment comment-indent-<%= comment.depth %>" id="comment-<%= comment.id %>">
+    <div class = "commentContent comment background">
+        <% // Comment content %>
+        <p><b style="color: var(--vs-darkblue)"><%= comment.author.username %></b> - <i><%= timeAgoComment(comment.createdAt, currentUser.createdAt, comment.authorId, currentUser.id, comment.minutesAgo) %></i></p>
+        <p><b style="color: var(--vs-darkblue)"><%= comment.preText %></b> <%= comment.text %></p>
+    </div>
+    <hr>
+    <% // Voting buttons %>
+    <div class = "commentActions">
+        <form class="vote-up-comment" data-id="<%= comment.id %>">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button type="submit" class="btn action upvote-<%= upvotesCommentArrayUser(comment.upvotes, currentUser) %>"><i class="far fa-thumbs-up"></i><span class = "btnText"> Vind ik leuk </span></button>
+        </form>
+        
+        <form class="vote-down-comment" data-id="<%= comment.id %>">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button type="submit" class="btn action downvote-<%= downvotesCommentArrayUser(comment.downvotes, currentUser) %>"><i class="far fa-thumbs-down"></i><span class = "btnText"> Vind ik niet leuk </span></button>
+        </form>
+    
+        <% // Reply button %>
+        <button type="button" class="btn action reply" data-id="<%= comment.id %>"><i class="far fa-comment"></i><span class = "btnText"> Reageer </span></button>
+    </div>
+    
+    <% // Voting count %>
+    <hr>
+    <div class = "voteCount">
+        <p><i class="far fa-thumbs-up"></i> <%- upvoteCount(comment.upvotes, currentUser) %></p>
+        <p><i class="far fa-thumbs-down"></i> <%- downvoteCount(comment.downvotes, currentUser) %></p>
+    </div>
+
+    <% // Reply section %>
+    <form class="commentContent replyForm" data-id="<%= post.id %>,<%= comment.id %>" id="replyForm-<%= comment.id %>" style="margin-top: 0px;">
+        <textarea name="text" class = "textarea" id="text-<%= comment.id %>" placeholder = "Wat vind jij?"></textarea>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <br>
+        <button type="submit" class="btn action" style="position: relative; left: 100%; transform: translateX(-100%);"><b>Plaats reactie</b></button>
+    </form>
+</div>
+
+
+
+
+

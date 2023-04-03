@@ -1,0 +1,45 @@
+<div class="box post">
+    <div class = "boxContent">
+    <% // Post content %>
+        <h3><strong><%= post.title %></strong></h3>
+        <p style="display: inline;"><i><%= timeAgoPost(currentUser.createdAt, post.minutesAgo) %></i></p>
+        <p style="display: inline;">door <b style="color: var(--vs-darkblue);"><%= postAuthor.username %></b></p>
+        <p style="margin: 7px 0px;"><%= post.text %></p>
+
+    <% // Website %>
+        <% if (post.websiteLink != null) { %>
+            <a href = <%= post.websiteLink %> target="_blank">
+                <div class = "box website">
+                    <div class="postImageContainer">
+                        <img class = "postImage" src = <%= post.websiteImage %>>
+                    </div>
+                    <div class = "websiteText">
+                        <h5><b><%= post.websiteText %></b></h5>
+                        <p style = "color: grey !important;"><%= post.websiteName %></p>
+                    </div>
+                </div>
+            </a>
+        <% } %>
+    </div>
+    <hr>
+
+    <% // Voting buttons %>
+    <div class = "postActions">
+        <form class="vote-up-post" style="display: inline-block;" data-id="<%= post.id %>">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button type="submit" class="btn action upvote-<%= upvotesPostArrayUser(postUpvotes, currentUser) %>"><i class="far fa-thumbs-up"></i> Vind ik leuk </button>
+        </form>
+        
+        <form class="vote-down-post" style="display: inline-block;" data-id="<%= post.id %>">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button type="submit" class="btn action downvote-<%= downvotesPostArrayUser(postDownvotes, currentUser) %>"><i class="far fa-thumbs-down"></i> Vind ik niet leuk </button>
+        </form>
+    </div>
+    <hr>
+
+    <% // Vote count %> 
+    <div class = "postVoteCount">   
+        <p><i class="far fa-thumbs-up"></i> <%- upvoteCount(postUpvotes, currentUser) %></p>
+        <p><i class="far fa-thumbs-down"></i> <%- downvoteCount(postDownvotes, currentUser) %></p>
+    </div>
+</div>
